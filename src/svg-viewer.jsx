@@ -42,26 +42,39 @@ const SvgViewer = ({
   };
 
   return (
+    <div style={{maxWidth:'400px',maxHeight:'800px'}}>
     <ReactSVGPanZoom
-      detectAutoPan={false}
-      ref={Viewer}
-      scaleFactor={scaleFactor}
-      scaleFactorMax={scaleFactorMax}
-      scaleFactorMin={scaleFactorMin}
-      width={Math.min(width, bracketWidth)}
-      height={Math.min(height, bracketHeight)}
-      tool={tool}
-      onChangeTool={setTool}
-      value={value}
-      onChangeValue={setValue}
-      onZoom={lockToBoundaries}
-      onPan={lockToBoundaries}
-      miniatureProps={{ position: 'right' }}
-      customToolbar={customToolbar ?? (() => <></>)}
-      {...rest}
-    >
-      {children}
-    </ReactSVGPanZoom>
+          detectAutoPan={true}
+          ref={Viewer}
+          scaleFactor={scaleFactor}
+          scaleFactorMax={scaleFactorMax}
+          scaleFactorMin={scaleFactorMin}
+          width={Math.min(width, bracketWidth)}
+          height={Math.min(height, bracketHeight)}
+          tool={tool}
+          onChangeTool={setTool}
+          value={value}
+          onChangeValue={setValue}
+          onZoom={lockToBoundaries}
+          onPan={lockToBoundaries}
+          customToolbar={customToolbar ?? (() => <></>)}
+          miniatureProps={{ position: 'none' }}
+          {...rest}
+            
+          // // Set default tool to pan
+          // defaultTool="pan"
+          
+          // // Hide toolbar completely
+          // toolbarProps={{ position: 'none' }}
+          
+          // // Prevent going out of bounds
+          // preventPanOutside={true}
+          
+        >
+          {children}
+        </ReactSVGPanZoom>
+        </div>
+        
   );
 };
 export default SvgViewer;
